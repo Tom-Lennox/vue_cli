@@ -1,0 +1,23 @@
+{
+  "name": "vue_cli",
+  "version": "1.0.0",
+  "description": "目的：vue関連で当たり前に行われているimport等の理解",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tom-Lennox/vue_cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tom-Lennox/vue_cli/issues"
+  },
+  "homepage": "https://github.com/Tom-Lennox/vue_cli#readme",
+  "dependencies": {
+    "@vue/cli": "^4.3.1"
+  }
+}
