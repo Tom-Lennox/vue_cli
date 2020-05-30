@@ -73,6 +73,24 @@ div[data-v-276663f0] {
     border: 1px solid red;
 }
 ```
+
+# ▼ 親子data受け渡し
+親 ⇒ 子：props
+
+受け取り側（子）に　props: []　設定
+（propsは配列。）
+
+親：
+```
+<LikeNumber :number="6"></LikeNumber>
+```
+子 ⇒ 親：emit
+
+# ▼ DOM template内はケバブ
+htmlの属性はケバブが慣習だからキャメルより良いかも。
+```
+<LikeNumber :total-number="6"></LikeNumber>
+```
 ------------------------------------------------------------------
 
 # init

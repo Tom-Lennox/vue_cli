@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>いいね({{ number }})</p>
+    <p>いいね({{ totalNumber }})</p>
     <button @click="increment">+1</button>
     <pre>{{ $data }}</pre>
   </div>
@@ -8,14 +8,15 @@
 
 <script>
 export default {
-  data() {
-    return {
-      number: 5
-    }
-  },
+  props: ["totalNumber"],
+  // data() {
+  //   return {
+  //     number: 5
+  //   }
+  // },
   methods: {
     increment() {
-      this.number += 1
+      this.totalNumber += 1
     }
   }
 }
