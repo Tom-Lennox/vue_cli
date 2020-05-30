@@ -3,7 +3,7 @@
 // 手：import, Vue.component
 import Vue from 'vue'
 import App from './App.vue'
-import LikeNumber from './LikeNumber.vue'
+import LikeNumber from './components/LikeNumber.vue'
 
 Vue.config.productionTip = false
 Vue.component("LikeNumber", LikeNumber)

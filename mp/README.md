@@ -29,8 +29,52 @@ yarn build
  - app-~~.js：
  
 ```
+# ▼ component, ローカル登録 / グローバル登録
+ローカル登録：
+export defaultの[components]オプションに指定。
 
-<!-- == -->
+グローバル登録：
+[main.js]に登録。
+
+# ▼ コンポーネントAを[App.vue]だけで使用する
+ ⇒ ローカル登録
+```
+Vue.component("LikeNumber", LikeNumber)
+```
+# ▼ componentsの配置場所
+src/components
+※移動させたら参照先を適宜変更のこと。
+｜ファイル少ない場合、エラー表示させつつgrepすると編集しやすい。
+
+# ▼ コンポーネント命名
+ケバブ or パスカル
+ - 自動補完
+：パスカルはjsで広く使われるため。
+
+ - html上、Vueコンポーネントとわかりやすい
+
+ - ブラウザは大小区別が付けられない。
+
+# ▼ DOMテンプレート作成時
+ ⇒ ケバブケース一択。
+
+# ▼ CSSはscoped付与でコンポーネント内のみに適用
+
+div[data-v-276663f0]と属性指定している。
+（具体的な仕組みはconsoleで確認できる。）
+```
+[body]
+<div data-v-276663f0="" data-v-7ba5bd90=""><p data-v-276663f0="">いいね(5)</p><button data-v-276663f0="">+1</button><pre data-v-276663f0="">{
+  "number": 5
+}</pre></div>
+
+[style]
+div[data-v-276663f0] {
+    border: 1px solid red;
+}
+```
+------------------------------------------------------------------
+
 # init
 
 ## Project setup
