@@ -161,3 +161,140 @@ ex)
 親コンポーネント内で記載する場合はDOM内に記載 ＝ ケバブケース。
 ---
 s8
+
+# ▼ slotの使い所
+ex)
+込み入ったhtmlタグをまとめて子に送る場合
+
+# ▼ slotの使い方
+親：差し込みたいものを子タグに挟む
+子：挟んだものを代入したい場所に<slot></slot>設置
+こんなかんじ。
+
+■親
+```
+    <LikeHeader>
+      <h1>トータルのいいね数</h1>
+      <h2>slot実験用</h2>
+    </LikeHeader>
+```
+
+■子
+```
+  <div>
+    <slot>フォールバックコンテンツ</slot>
+  </div>
+```
+
+# ▼ 子コンポーネントに値を渡す具体手順
+■親
+属性を渡す
+```
+<LikeHeader> ⇒ <LikeHeader header-text="hello">
+```
+■子
+propsで受け取る
+```
+export default {
+  props: ["headerText"]
+}
+```
+
+# ▼ slot、複数使用
+ ⇒ templateタグで囲み、name指定する。
+v-slot:無しでもokだが、指定した方が良さそう。
+■親
+```
+    <LikeHeader header-text="hello">
+      <template v-slot:title>
+        <h1>トータルのいいね数</h1>
+      </template>
+      <template v-slot:number>
+        <h2>{{ totalNumber }}：slot実験用</h2>
+      </template>
+    </LikeHeader>
+```
+■子
+```
+    <slot name="title">フォールバックコンテンツ</slot>
+    <slot name="number">フォールバックコンテンツ</slot>
+```
+- 名前付き以外はdefaultに組み込まれる。
+（<~~ v-slot:default> の自動生成。）
+
+# ▼ (slot property)
+子 ⇒ 親
+レア。必要になったら学習する方針で。
+（省略記法：<template #default="title">）
+
+# ▼ slotを動的に。
+■親
+```
+[body]
+    <template v-slot:[dou]>
+        <p>動的なslot</p>
+    </template>
+
+[script]
+  data() {
+    return {
+      dou: "douteki"
+    }
+  },
+```
+■子
+```
+<slot name="douteki"></slot>
+```
+
+# ▼ v-slotの省略
+<template v-slot:[dou]>
+ ⇒ 
+<template #[dou]>
+
+# ▼ component：動的に切り替えたい場合
+ ⇒ componentタグ + is属性　を使用するとらく。
+ex)
+home, about等のタブ変更とか。
+（v-if以外の方法で。）
+
+（v-ifの場合）
+htmlはこんな。
+```
+<Home v-if="currentComponent === 'Home'"></Home>
+<About v-if="currentComponent === 'About'"></About>
+```
+ ⇒ isを使用すると
+```
+<component :is="currentComponent"></component>
+```
+
+追記：
+bindしてjs式になっても、文字列でコンポーネント指定できる。
+```
+<component :is="'Home'"></component>
+```
+
+# ▼ componentタグの注意
+destroyされるのでコスト高。
+ ⇒ 入力中のフォーム内容とかは削除される。
+ ⇒ <keep-alive>　で対処する。
+```
+<keep-alive>
+    <component :is="'Home'"></component>
+</keep-alive>
+```
+
+# ▼ [tips]
+data確認
+```
+<pre>{{ $data }}</pre>
+```
+
+インスタンス生成のコスト確認
+```
+    destroyed() {
+        console.log("■ destroyed");
+    }
+```
+
