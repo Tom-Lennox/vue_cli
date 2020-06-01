@@ -26,6 +26,9 @@
     <keep-alive>
       <component :is="currentComponent"></component>
     </keep-alive>
+    <hr>
+    <p>s9</p>
+    <p>s10</p>
   </div>
 </template>
 <script>

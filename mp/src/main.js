@@ -4,11 +4,13 @@
 import Vue from 'vue'
 import App from './App.vue'
 import LikeNumber from './components/LikeNumber.vue'
+import router from "./router";
 
 Vue.config.productionTip = false
 Vue.component("LikeNumber", LikeNumber)
 
 new Vue({
+  router,
   // # ▼ .$mount('#app')の意味：el: '#app' と同じ
 
   // el: '#app' ⇒ .$mount('#app')

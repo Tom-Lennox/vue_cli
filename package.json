@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/Tom-Lennox/vue_cli#readme",
   "dependencies": {
-    "@vue/cli": "^4.3.1"
+    "@vue/cli": "^4.3.1",
+    "vue-router": "^3.3.2"
   },
   "devDependencies": {
     "eslint-config-prettier": "^6.11.0",
