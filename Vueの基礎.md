@@ -297,4 +297,3 @@ data確認
         console.log("■ destroyed");
     }
 ```
-
