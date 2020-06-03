@@ -1,16 +1,16 @@
-# ▼ assets:
+## assets:
 css, 画像等の格納。
 
-# ▼ main.js:
+## main.js:
 最終的にcomponentsを1つのjsファイルにするもの(bundle.jsの立ち位置)
 
-# ▼ 【build】するには：
+## 【build】するには：
 ```
 [package.json]
   "scripts": {
-    # ▼ 開発用
+    ## 開発用
     "serve": "vue-cli-service serve",
-    # ▼ 本番用
+    ## 本番用
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -24,24 +24,24 @@ yarn build
  - app-~~.js：
  
 ```
-# ▼ component, ローカル登録 / グローバル登録
+## component, ローカル登録 / グローバル登録
 ローカル登録：
 export defaultの[components]オプションに指定。
 
 グローバル登録：
 [main.js]に登録。
 
-# ▼ コンポーネントAを[App.vue]だけで使用する
+## コンポーネントAを[App.vue]だけで使用する
  ⇒ ローカル登録
 ```
 Vue.component("LikeNumber", LikeNumber)
 ```
-# ▼ componentsの配置場所
+## componentsの配置場所
 src/components
 ※移動させたら参照先を適宜変更のこと。
 ｜ファイル少ない場合、エラー表示させつつgrepすると編集しやすい。
 
-# ▼ コンポーネント命名
+## コンポーネント命名
 ケバブ or パスカル
  - 自動補完
 ：パスカルはjsで広く使われるため。
@@ -50,10 +50,10 @@ src/components
 
  - ブラウザは大小区別が付けられない。
 
-# ▼ DOMテンプレート作成時
+## DOMテンプレート作成時
  ⇒ ケバブケース一択。
 
-# ▼ CSSはscoped付与でコンポーネント内のみに適用
+## CSSはscoped付与でコンポーネント内のみに適用
 
 div[data-v-276663f0]と属性指定している。
 （具体的な仕組みはconsoleで確認できる。）
@@ -69,7 +69,7 @@ div[data-v-276663f0] {
 }
 ```
 
-# ▼ props
+## props
 親 ⇒ 子：props
 
 （子）
@@ -96,7 +96,7 @@ props: {
 props ⇒ objで返すもの。
 通常はrequired等設定するから。
 
-# ▼ props - defaultで object, 配列 を返す場合は関数
+## props - defaultで object, 配列 を返す場合は関数
 込み入ったものを返すときは関数。
 ```
 default: function() {
@@ -106,13 +106,13 @@ default: function() {
 }
 ```
 
-# ▼ DOM template内はケバブ
+## DOM template内はケバブ
 htmlの属性はケバブが慣習だからキャメルより良いかも。
 ```
 <LikeNumber :total-number="6"></LikeNumber>
 ```
 
-# ▼ $emit
+## $emit
 親子component、送り口、受け口を作るイメージ
 子 ⇒ 親：$emit
 *$emitは親コンポーネントにしてある式（custom event）を実行*
@@ -153,20 +153,20 @@ ex)
   }
 ```
 
-# ▼ propsで配列、objectを渡す場合
+## propsで配列、objectを渡す場合
  ⇒ 参照渡し
 
-# ▼ $emitのカスタムイベント名
+## $emitのカスタムイベント名
  ⇒ ケバブケース
 親コンポーネント内で記載する場合はDOM内に記載 ＝ ケバブケース。
 ---
 s8
 
-# ▼ slotの使い所
+## slotの使い所
 ex)
 込み入ったhtmlタグをまとめて子に送る場合
 
-# ▼ slotの使い方
+## slotの使い方
 親：差し込みたいものを子タグに挟む
 子：挟んだものを代入したい場所に<slot></slot>設置
 こんなかんじ。
@@ -186,7 +186,7 @@ ex)
   </div>
 ```
 
-# ▼ 子コンポーネントに値を渡す具体手順
+## 子コンポーネントに値を渡す具体手順
 ■親
 属性を渡す
 ```
@@ -200,7 +200,7 @@ export default {
 }
 ```
 
-# ▼ slot、複数使用
+## slot、複数使用
  ⇒ templateタグで囲み、name指定する。
 v-slot:無しでもokだが、指定した方が良さそう。
 ■親
@@ -222,12 +222,12 @@ v-slot:無しでもokだが、指定した方が良さそう。
 - 名前付き以外はdefaultに組み込まれる。
 （<~~ v-slot:default> の自動生成。）
 
-# ▼ (slot property)
+## (slot property)
 子 ⇒ 親
 レア。必要になったら学習する方針で。
 （省略記法：<template #default="title">）
 
-# ▼ slotを動的に。
+## slotを動的に。
 ■親
 ```
 [body]
@@ -247,12 +247,12 @@ v-slot:無しでもokだが、指定した方が良さそう。
 <slot name="douteki"></slot>
 ```
 
-# ▼ v-slotの省略
+## v-slotの省略
 <template v-slot:[dou]>
  ⇒ 
 <template #[dou]>
 
-# ▼ component：動的に切り替えたい場合
+## component：動的に切り替えたい場合
  ⇒ componentタグ + is属性　を使用するとらく。
 ex)
 home, about等のタブ変更とか。
@@ -275,7 +275,7 @@ bindしてjs式になっても、文字列でコンポーネント指定でき�
 <component :is="'Home'"></component>
 ```
 
-# ▼ componentタグの注意
+## componentタグの注意
 destroyされるのでコスト高。
  ⇒ 入力中のフォーム内容とかは削除される。
  ⇒ <keep-alive>　で対処する。
@@ -285,7 +285,7 @@ destroyされるのでコスト高。
 </keep-alive>
 ```
 
-# ▼ [tips]
+## [tips]
 data確認
 ```
 <pre>{{ $data }}</pre>
