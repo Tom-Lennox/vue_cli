@@ -401,3 +401,8 @@ scrollBehavior(to, from, saverPosition) {
   }
 ```
 
+# ▼ 個人用memo
+# ▼ <router-link>
+- DOMでは<a>になる。
+- 
+｜router-link-exact-active
