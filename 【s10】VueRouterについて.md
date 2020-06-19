@@ -41,7 +41,7 @@ http://localhost:8081/#/users
 http://localhost:8081/#/home
 
 # ▼ 2　URLから#を無くしたい
- ⇒ historyモード　を使用する。
+ ⇒ historyモード　を使用。
 2.
 url: #
 =ID指定
@@ -64,7 +64,7 @@ https://router.vuejs.org/ja/guide/essentials/history-mode.html#%E3%82%B5%E3%83%B
 4.URLをボタンで切り替えたい
 - aタグ
 x SPAでなくなる
-- router-link
+-  <router-link> 
 toで指定
 ｜tag：
 aタグリンクは使う場面無いから
@@ -74,16 +74,16 @@ aタグリンクは使う場面無いから
       <p># ▼ a</p>
       <a href="/">home</a>
       <a href="/users">users</a>
-      <p># ▼ router-link</p>
-      <router-link to="/">home</router-link>
-      <router-link to="/users">users</router-link>
+      <p># ▼  <router-link> </p>
+      <router-link>  to="/">home</ <router-link> >
+      <router-link>  to="/users">users</ <router-link> >
       <p># ▼ tag指定</p>
-      <router-link to="/" tag="div">home</router-link>
-      <router-link to="/users" tag="div">users</router-link>
+      <router-link>  to="/" tag="div">home</ <router-link> >
+      <router-link>  to="/users" tag="div">users</ <router-link> >
     </nav>
 ```
 
-# ▼ router-link　activeにしたい
+# ▼  <router-link> 　activeにしたい
 - active-class属性を使用する。
 - exact
 ｜o 特定のurlだけ指定
@@ -94,8 +94,8 @@ exact
 x　http://localhost:8081/
 o　http://localhost:8081/users
 ```
-<router-link to="/" active-class="link--active" exact>home</router-link>
-<router-link to="/users" active-class="link--active" exact>users<router-link>
+<router-link>  to="/" active-class="link--active" exact>home</ <router-link> >
+<router-link>  to="/users" active-class="link--active" exact>users <router-link> 
 
 [css]
 .link--active {
@@ -103,7 +103,7 @@ o　http://localhost:8081/users
 }
 ```
 
-# ▼ router-link　タグを使用しないlinkの切り替え
+# ▼  <router-link>  を使用しないでlinkの切り替え
 method呼び出すだけ。
 path指定は無くてもok
 ```
@@ -121,7 +121,7 @@ export default {
   }
 }
 ```
-# ▼ urlを動的に
+# ▼ urlを動的に表現したい
 urlに変数を追加
 Usrs.vueでidを表示する。
 
@@ -133,7 +133,7 @@ urlを引数に渡すイメージ
 [C:\koko\hs\dir_sakujyo\s13\mp\src\views\Users.vue]
 http://localhost:8081/users/ 以降：{{ $route.params.id }}
 ```
-# ▼ router-link 遷移時にライフサイクルフックを呼びたい
+# ▼  <router-link>  遷移時にライフサイクルフックを呼びたい
  ⇒ ウォッチャを使用する。
 ```
   watch: {
@@ -144,7 +144,11 @@ http://localhost:8081/users/ 以降：{{ $route.params.id }}
   }
 ```
 # ▼ {{ $route.params.id }}　は密結合だから使いたくない場合
- ⇒ router.jsのpropsをtrueに、渡すものは「:id」の部分（paramは同一で）、子コンポーネント側でpropsを受け取る。
+ ⇒ 
+ ・router.js　props：true
+ ・渡すもの：「:id」の部分（paramは同一で）
+ ・子コンポーネント側：propsを受け取る。
+
  （router.jsはmain.jsで呼び出してる。
 ```
 [router.js]
@@ -179,23 +183,23 @@ children: [{ path: 'profiles', component: UsersProfile }]
 <router-view />
 
 ```
-# ▼ router-linkのtoを動的に。
+# ▼  <router-link> のtoを動的に。
 ```
 1.
-<router-link :to="'/users/' + (Number(id) + 1) + '/profiles'">次のuser<router-link>
+<router-link>  :to="'/users/' + (Number(id) + 1) + '/profiles'">次のuser <router-link> 
 
 2.
 [C:\koko\hs\dir_sakujyo\s13\mp\src\router.js]
 { path: 'profiles', component: UsersProfile, name: 'users-id-profile' }
 
 [C:\koko\hs\dir_sakujyo\s13\mp\src\views\UsersPost.vue]
-<router-link
+<router-link> 
         :to="{ name: 'users-id-profile', params: { id: Number(id) + 1 } }"
         tag="button"
-        >次のuser</router-link
+        >次のuser</ <router-link> 
       >
 
-methodsで遷移する場合（router-link使用しない場合
+（methodsで遷移する場合（ <router-link> 使用しない場合）
  ⇒ 名前指定して遷移」というイメージ。
 [Home.vue]
 methods: {
@@ -209,7 +213,7 @@ methods: {
 # ▼ query付与したい
 ```
 1:
-router-linkに付与するだけ。
+ <router-link> > to に付与するだけ。
 query: { lang: 'ja', page: 2 }
 
 2:
@@ -282,9 +286,9 @@ path指定ないものは全て'/'に。
 Vue.jsはID指定できない。
 遷移しない。
 
-//# ▼ router-link toについて
+//# ▼  <router-link>  toについて
 ```
-      <router-link
+      <router-link> 
         # ▼ obj形式で渡せる
         :to="{
             # ▼ router-viewのネストに使用
@@ -297,7 +301,7 @@ Vue.jsはID指定できない。
             hash: '#next-user
         }"
         tag="button"
-        >次のuser</router-link
+        >次のuser</ <router-link> 
       >
 ```
 
@@ -402,6 +406,8 @@ scrollBehavior(to, from, saverPosition) {
 ```
 
 # ▼ 個人用memo
-## ▼ <router-link>
+# ▼  <router-link> 
 - DOMでは<a>になる。
-- activeになる：router-link-exact-active　のclassが付与。
+- 
+｜ <router-link> -exact-active
+
